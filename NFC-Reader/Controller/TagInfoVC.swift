@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import CoreNFC
 
 class TagInfoVC: UIViewController {
-
+    
+    var internalTagData = [(title: String, value: String)]()
+    
     lazy var countries: [String] = {
         var names = [String]()
         let current = NSLocale(localeIdentifier: "en_US")
@@ -25,9 +28,8 @@ class TagInfoVC: UIViewController {
 
     
     @IBOutlet weak var table: UITableView!
-    
-    
-    
+    private var nfcSession: NFCNDEFReaderSession!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,17 +38,28 @@ class TagInfoVC: UIViewController {
     }
 
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func onScanButton(_ sender: ScanButton) {
+        self.nfcSession = NFCNDEFReaderSession(delegate: self,
+                                               queue: DispatchQueue(label: "ndefQueue", attributes: .concurrent), invalidateAfterFirstRead: true)
+        self.nfcSession.alertMessage = "Bla bla, Put your NFC TAG over iPhone.."
+        self.nfcSession.begin()
     }
-    */
-
+    
+    func tagDataChanged(tagID: String, tagTechnology: String, tagType: String) {
+        self.internalTagData.removeAll()
+        if tagID != "" {
+            self.internalTagData.append((title: "UID", value: tagID.uppercased()))
+        }
+        if tagTechnology != "" {
+            self.internalTagData.append((title: "Technology", value: tagTechnology.uppercased()))
+        }
+        if tagType != "" {
+            self.internalTagData.append((title: "Type", value: tagType.uppercased()))
+        }
+        DispatchQueue.main.async {
+            self.table.reloadData()
+        }
+    }
 }
 
 
@@ -58,19 +71,37 @@ extension TagInfoVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.countries.count
+        return self.internalTagData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = self.countries[indexPath.row]
+        let tuple = self.internalTagData[indexPath.row]
+        cell.textLabel?.text = tuple.title
+        cell.detailTextLabel?.text = tuple.value
         return cell
     }
+    
 }
 
 extension TagInfoVC: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 24
     }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 && internalTagData.count > 0 {
+            let view = UIView(frame: CGRect(x:0, y:0, width:tableView.frame.size.width, height:18))
+            let label = UILabel(frame: CGRect(x:10, y:5, width:tableView.frame.size.width, height:18))
+            label.font = UIFont.systemFont(ofSize: 14)
+            label.text = "Tag Info";
+            view.addSubview(label);
+            view.backgroundColor = UIColor.clear;
+            return view
+        }
+        return nil
+    }
+
+    
 }
 
