@@ -1,0 +1,375 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5FAAE8901F994F13004401CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAAE88F1F994F13004401CC /* AppDelegate.swift */; };
+		5FAAE8951F994F13004401CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FAAE8931F994F13004401CC /* Main.storyboard */; };
+		5FAAE8971F994F13004401CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FAAE8961F994F13004401CC /* Assets.xcassets */; };
+		5FAAE89A1F994F13004401CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FAAE8981F994F13004401CC /* LaunchScreen.storyboard */; };
+		5FAAE8A21F99506B004401CC /* TagInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAAE8A11F99506B004401CC /* TagInfoVC.swift */; };
+		5FAAE8A81F99529B004401CC /* ScanButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAAE8A71F99529B004401CC /* ScanButton.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		5FAAE88C1F994F13004401CC /* NFC-Reader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NFC-Reader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FAAE88F1F994F13004401CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5FAAE8941F994F13004401CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5FAAE8961F994F13004401CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5FAAE8991F994F13004401CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5FAAE89B1F994F13004401CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5FAAE8A11F99506B004401CC /* TagInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagInfoVC.swift; sourceTree = "<group>"; };
+		5FAAE8A71F99529B004401CC /* ScanButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanButton.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5FAAE8891F994F13004401CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5FAAE8831F994F13004401CC = {
+			isa = PBXGroup;
+			children = (
+				5FAAE88E1F994F13004401CC /* NFC-Reader */,
+				5FAAE88D1F994F13004401CC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5FAAE88D1F994F13004401CC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5FAAE88C1F994F13004401CC /* NFC-Reader.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5FAAE88E1F994F13004401CC /* NFC-Reader */ = {
+			isa = PBXGroup;
+			children = (
+				5FAAE88F1F994F13004401CC /* AppDelegate.swift */,
+				5FAAE8A91F9954AB004401CC /* Storyboard */,
+				5FAAE8A31F995246004401CC /* Model */,
+				5FAAE8A41F99524E004401CC /* View */,
+				5FAAE8A51F995254004401CC /* Controller */,
+				5FAAE8A61F99526B004401CC /* Support Files */,
+			);
+			path = "NFC-Reader";
+			sourceTree = "<group>";
+		};
+		5FAAE8A31F995246004401CC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5FAAE8A41F99524E004401CC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5FAAE8A71F99529B004401CC /* ScanButton.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5FAAE8A51F995254004401CC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5FAAE8A11F99506B004401CC /* TagInfoVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		5FAAE8A61F99526B004401CC /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				5FAAE8961F994F13004401CC /* Assets.xcassets */,
+				5FAAE8981F994F13004401CC /* LaunchScreen.storyboard */,
+				5FAAE89B1F994F13004401CC /* Info.plist */,
+			);
+			path = "Support Files";
+			sourceTree = "<group>";
+		};
+		5FAAE8A91F9954AB004401CC /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				5FAAE8931F994F13004401CC /* Main.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5FAAE88B1F994F13004401CC /* NFC-Reader */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5FAAE89E1F994F13004401CC /* Build configuration list for PBXNativeTarget "NFC-Reader" */;
+			buildPhases = (
+				5FAAE8881F994F13004401CC /* Sources */,
+				5FAAE8891F994F13004401CC /* Frameworks */,
+				5FAAE88A1F994F13004401CC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "NFC-Reader";
+			productName = "NFC-Reader";
+			productReference = 5FAAE88C1F994F13004401CC /* NFC-Reader.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5FAAE8841F994F13004401CC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0910;
+				LastUpgradeCheck = 0910;
+				ORGANIZATIONNAME = "Golovanov, Eugene";
+				TargetAttributes = {
+					5FAAE88B1F994F13004401CC = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Manual;
+					};
+				};
+			};
+			buildConfigurationList = 5FAAE8871F994F13004401CC /* Build configuration list for PBXProject "NFC-Reader" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5FAAE8831F994F13004401CC;
+			productRefGroup = 5FAAE88D1F994F13004401CC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5FAAE88B1F994F13004401CC /* NFC-Reader */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5FAAE88A1F994F13004401CC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5FAAE89A1F994F13004401CC /* LaunchScreen.storyboard in Resources */,
+				5FAAE8971F994F13004401CC /* Assets.xcassets in Resources */,
+				5FAAE8951F994F13004401CC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5FAAE8881F994F13004401CC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5FAAE8901F994F13004401CC /* AppDelegate.swift in Sources */,
+				5FAAE8A81F99529B004401CC /* ScanButton.swift in Sources */,
+				5FAAE8A21F99506B004401CC /* TagInfoVC.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		5FAAE8931F994F13004401CC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5FAAE8941F994F13004401CC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		5FAAE8981F994F13004401CC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5FAAE8991F994F13004401CC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5FAAE89C1F994F13004401CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		5FAAE89D1F994F13004401CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5FAAE89F1F994F13004401CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 875MRQ5J2T;
+				INFOPLIST_FILE = "$(SRCROOT)/NFC-Reader/Support Files/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.evgeniygolovanov.test;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "05112dce-027c-42d1-89cd-f5ec12fb82a0";
+				PROVISIONING_PROFILE_SPECIFIER = development_test_playground;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5FAAE8A01F994F13004401CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 875MRQ5J2T;
+				INFOPLIST_FILE = "$(SRCROOT)/NFC-Reader/Support Files/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.evgeniygolovanov.test;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "05112dce-027c-42d1-89cd-f5ec12fb82a0";
+				PROVISIONING_PROFILE_SPECIFIER = development_test_playground;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5FAAE8871F994F13004401CC /* Build configuration list for PBXProject "NFC-Reader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5FAAE89C1F994F13004401CC /* Debug */,
+				5FAAE89D1F994F13004401CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5FAAE89E1F994F13004401CC /* Build configuration list for PBXNativeTarget "NFC-Reader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5FAAE89F1F994F13004401CC /* Debug */,
+				5FAAE8A01F994F13004401CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5FAAE8841F994F13004401CC /* Project object */;
+}
