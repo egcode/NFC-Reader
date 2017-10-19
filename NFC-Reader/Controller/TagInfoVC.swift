@@ -10,12 +10,29 @@ import UIKit
 
 class TagInfoVC: UIViewController {
 
+    lazy var countries: [String] = {
+        var names = [String]()
+        let current = NSLocale(localeIdentifier: "en_US")
+        for code in NSLocale.isoCountryCodes {
+            let id = NSLocale.localeIdentifier(fromComponents: [NSLocale.Key.countryCode.rawValue: code])
+            let name = current.displayName(forKey: NSLocale.Key.identifier, value: id)
+            if let country = name {
+                names.append(country)
+            }
+        }
+        return names
+    }()
+
+    
+    @IBOutlet weak var table: UITableView!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
-        
-        // Do any additional setup after loading the view.
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+
     }
 
     
@@ -31,3 +48,29 @@ class TagInfoVC: UIViewController {
     */
 
 }
+
+
+
+
+extension TagInfoVC: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.countries.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = self.countries[indexPath.row]
+        return cell
+    }
+}
+
+extension TagInfoVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+

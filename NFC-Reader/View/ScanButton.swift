@@ -24,7 +24,6 @@ class ScanButton: UIButton {
         self.layer.cornerRadius = 4.0
         
         self.backgroundColor = UIColor(red: 47/255, green: 189/255, blue: 119/255, alpha: 1.0)
-        //        self.backgroundColor = UIColor.init(red: <#T##CGFloat#>, green: <#T##CGFloat#>, blue: <#T##CGFloat#>, alpha: <#T##CGFloat#>)
         self.setTitleColor(UIColor.white, for: UIControlState.normal)
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowRadius = 2
