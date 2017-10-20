@@ -19,9 +19,7 @@ class TagInfoVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.navigationController?.navigationBar.prefersLargeTitles = true
-
     }
     
     // MARK: -
@@ -31,8 +29,8 @@ class TagInfoVC: UIViewController {
         self.nfcSession.alertMessage = "Bla bla, Put your NFC TAG over iPhone.."
         self.nfcSession.begin()
         self.timer = Timer.scheduledTimer(timeInterval: 50.0, target: self, selector: #selector(self.timerFunc), userInfo: nil, repeats: false)
-
     }
+    
     func tagDataChanged(tagID: String, tagTechnology: String, tagType: String) {
         self.internalTagData.removeAll()
         if tagID != "" {
@@ -51,15 +49,11 @@ class TagInfoVC: UIViewController {
     
     //MARK: - Timer
     
-    func timerFunc() {
+    @objc func timerFunc() {
+        self.nfcSession.invalidate()
         self.alert(title: "", msg: "Scanner could not detect any tags")
     }
-
-    
 }
-
-
-
 
 extension TagInfoVC: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -77,7 +71,6 @@ extension TagInfoVC: UITableViewDataSource {
         cell.detailTextLabel?.text = tuple.value
         return cell
     }
-    
 }
 
 extension TagInfoVC: UITableViewDelegate {
@@ -97,7 +90,6 @@ extension TagInfoVC: UITableViewDelegate {
         }
         return nil
     }
-
     
 }
 

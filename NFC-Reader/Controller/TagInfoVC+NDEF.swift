@@ -23,11 +23,14 @@ extension TagInfoVC: NFCNDEFReaderSessionDelegate {
             for record in message.records {
                 print(record.payload)
                 
-                resultString += "-->Payload: \(String(describing: String.init(data: record.payload, encoding: .utf8)!))\n"
-                resultString += "-->Type: \(String(describing: String.init(data: record.type, encoding: .utf8)!))\n" //U - url,sms,phone,location, T - text, android.com:pkg - android app,
-                resultString += "-->Identifier: \(record.identifier)\n"
-                resultString += "-->TypeNameFormat: \(self.getTypeNameFormatString(format: record.typeNameFormat))"
+                resultString += "---\n"
+                resultString += "Payload: \(String(describing: String.init(data: record.payload, encoding: .utf8)!))\n"
+                resultString += "Type: \(String(describing: String.init(data: record.type, encoding: .utf8)!))\n" //U - url,sms,phone,location, T - text, android.com:pkg - android app,
+                resultString += "Identifier: \(record.identifier)\n"
+                resultString += "TypeNameFormat: \(self.getTypeNameFormatString(format: record.typeNameFormat))"
                 print(resultString)
+                resultString += "\n---"
+
             }
         }
         DispatchQueue.main.async {
@@ -62,11 +65,11 @@ extension TagInfoVC: NFCNDEFReaderSessionDelegate {
                     tagType = "\(word[range.upperBound...])"
                 }
             }
-            print("\n\n\n<<<")
+            print("\n\n<<<")
             print("tagID: \(tagID)")
             print("tagTechnology: \(tagTechnology)")
             print("tagType: \(tagType)")
-            print(">>>\n\n\n")
+            print(">>>\n\n")
             self.tagDataChanged(tagID: tagID, tagTechnology: tagTechnology, tagType: tagType)
         } else {
             print("No Internal Tag Data")
@@ -76,19 +79,19 @@ extension TagInfoVC: NFCNDEFReaderSessionDelegate {
     func getTypeNameFormatString(format: NFCTypeNameFormat) -> String {
         switch format {
         case .absoluteURI:
-            return "absoluteURI"
+            return "AbsoluteURI"
         case .empty:
-            return "empty"
+            return "Empty"
         case .nfcWellKnown:
-            return "nfcWellKnown"
+            return "NfcWellKnown"
         case .media:
-            return "media"
+            return "MIME(RFC 2046)"
         case .nfcExternal:
-            return "nfcExternal"
+            return "NfcExternal"
         case .unknown:
-            return "unknown"
+            return "Unknown"
         case .unchanged:
-            return "unchanged"
+            return "Unchanged"
         }
     }
 
