@@ -11,7 +11,11 @@ import CoreNFC
 
 class TagInfoVC: UIViewController {
     
+    struct NdefSection {
+        var sectionData = [(title: String, value: String)]()
+    }
     var internalTagData = [(title: String, value: String)]()
+    var recordSections = [NdefSection]()
     
     @IBOutlet weak var table: UITableView!
     private var nfcSession: NFCNDEFReaderSession!
@@ -42,9 +46,6 @@ class TagInfoVC: UIViewController {
         if tagType != "" {
             self.internalTagData.append((title: "Type", value: tagType.uppercased()))
         }
-        DispatchQueue.main.async {
-            self.table.reloadData()
-        }
     }
     
     //MARK: - Timer
@@ -57,18 +58,29 @@ class TagInfoVC: UIViewController {
 
 extension TagInfoVC: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 1 + self.recordSections.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.internalTagData.count
+        if section == 0 {
+            return self.internalTagData.count
+        } else {
+            return self.recordSections[section-1].sectionData.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let tuple = self.internalTagData[indexPath.row]
-        cell.textLabel?.text = tuple.title
-        cell.detailTextLabel?.text = tuple.value
+        if indexPath.section == 0 {
+            let tuple = self.internalTagData[indexPath.row]
+            cell.textLabel?.text = tuple.title
+            cell.detailTextLabel?.text = tuple.value
+        } else {
+            let tuple = self.recordSections[indexPath.section-1].sectionData[indexPath.row]
+            cell.textLabel?.text = tuple.title
+            cell.detailTextLabel?.text = tuple.value
+        }
+        
         return cell
     }
 }
@@ -79,16 +91,17 @@ extension TagInfoVC: UITableViewDelegate {
         return 24
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView(frame: CGRect(x:0, y:0, width:tableView.frame.size.width, height:18))
+        let label = UILabel(frame: CGRect(x:10, y:5, width:tableView.frame.size.width, height:18))
+        label.font = UIFont.systemFont(ofSize: 14)
+        view.addSubview(label);
+        view.backgroundColor = UIColor.clear;
         if section == 0 && internalTagData.count > 0 {
-            let view = UIView(frame: CGRect(x:0, y:0, width:tableView.frame.size.width, height:18))
-            let label = UILabel(frame: CGRect(x:10, y:5, width:tableView.frame.size.width, height:18))
-            label.font = UIFont.systemFont(ofSize: 14)
             label.text = "Tag Info";
-            view.addSubview(label);
-            view.backgroundColor = UIColor.clear;
-            return view
+        } else if section >= 0 {
+            label.text = "NDEF Record \(section)";
         }
-        return nil
+        return view
     }
     
 }

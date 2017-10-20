@@ -16,12 +16,18 @@ extension TagInfoVC: NFCNDEFReaderSessionDelegate {
     
     func readerSession(_ session: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {
         self.timer?.invalidate()
-        print("-->didDetectNDEFs: \(messages)")
         self.getInternalTagData(session: session)//////////
+        print("-->didDetectNDEFs: \(messages)")
         var resultString = ""
+        
         for message in messages {
             for record in message.records {
                 print(record.payload)
+                
+                let payload = String.init(data: record.payload, encoding: .utf8) ?? ""
+                let type = String.init(data: record.type, encoding: .utf8) ?? ""
+                let ident = String.init(data: record.identifier, encoding: .utf8) ?? ""
+                let typeNameForm = "\(self.getTypeNameFormatString(format: record.typeNameFormat))"
                 
                 resultString += "---\n"
                 resultString += "Payload: \(String(describing: String.init(data: record.payload, encoding: .utf8)!))\n"
@@ -30,10 +36,15 @@ extension TagInfoVC: NFCNDEFReaderSessionDelegate {
                 resultString += "TypeNameFormat: \(self.getTypeNameFormatString(format: record.typeNameFormat))"
                 print(resultString)
                 resultString += "\n---"
-
+                
+                let section = NdefSection(sectionData: self.getTagRecordsData(payload: payload, type: type, identifier: ident, typeNameFormat: typeNameForm))
+                self.recordSections.append(section)
             }
+            
         }
+
         DispatchQueue.main.async {
+            self.table.reloadData()
             self.alert(title: "Tag read success", msg: resultString)
         }
     }
@@ -76,6 +87,25 @@ extension TagInfoVC: NFCNDEFReaderSessionDelegate {
         }
     }
     
+    func getTagRecordsData(payload: String, type: String, identifier: String, typeNameFormat: String) -> [(title: String, value: String)] {
+        
+        var sectionData = [(title: String, value: String)]()
+        
+        if payload != "" {
+            sectionData.append((title: "payload", value: payload))
+        }
+        if type != "" {
+            sectionData.append((title: "Type", value: type))
+        }
+        if identifier != "" {
+            sectionData.append((title: "Identifier", value: identifier))
+        }
+        if typeNameFormat != "" {
+            sectionData.append((title: "TypeNameFormat", value: typeNameFormat))
+        }
+        return sectionData
+    }
+
     func getTypeNameFormatString(format: NFCTypeNameFormat) -> String {
         switch format {
         case .absoluteURI:
@@ -94,5 +124,4 @@ extension TagInfoVC: NFCNDEFReaderSessionDelegate {
             return "Unchanged"
         }
     }
-
 }
