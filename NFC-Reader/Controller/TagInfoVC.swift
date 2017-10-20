@@ -89,14 +89,14 @@ class TagInfoVC: UIViewController {
             }
             sectionData.append((title: RecordNDEF.type.rawValue, value: t))
         }
-        if payload != "" {
-            sectionData.append((title: RecordNDEF.payload.rawValue, value: payload.replacingOccurrences(of: "\0", with: "")))
-        }
         if identifier != "" {
             sectionData.append((title: RecordNDEF.id.rawValue, value: identifier))
         }
         if typeNameFormat != "" {
             sectionData.append((title: RecordNDEF.typeName.rawValue, value: typeNameFormat))
+        }
+        if payload != "" {
+            sectionData.append((title: RecordNDEF.payload.rawValue, value: payload.replacingOccurrences(of: "\0", with: "")))
         }
         return sectionData
     }
