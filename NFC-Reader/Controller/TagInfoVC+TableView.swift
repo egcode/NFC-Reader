@@ -10,7 +10,13 @@ import UIKit
 
 extension TagInfoVC: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1 + self.ndefSections.count
+        if self.internalTagData.isEmpty && self.ndefSections.isEmpty {
+            self.table.backgroundView = self.emptyMessage(tableView: self.table)
+            return 0
+        } else {
+            self.table.backgroundView = UIView()
+            return 1 + self.ndefSections.count
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -64,4 +70,43 @@ extension TagInfoVC: UITableViewDelegate {
         return nil
     }
 }
+
+extension TagInfoVC {
+    func emptyMessage(tableView: UITableView) -> UIView {
+        let bgView = UIView(frame: CGRect(x:0,y:0,width:self.view.bounds.size.width, height:self.view.bounds.size.height))
+        bgView.backgroundColor = UIColor.clear
+        
+        let centerLabel = UILabel(frame: CGRect(x:0,y:self.view.bounds.size.width/2,width:self.view.bounds.size.width, height:50))
+        centerLabel.text = "No Tag Scanned yet"
+        centerLabel.textColor = UIColor.black
+        centerLabel.numberOfLines = 0;
+        centerLabel.textAlignment = .center;
+        centerLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        centerLabel.backgroundColor = UIColor.clear
+        bgView.addSubview(centerLabel)
+        
+        let vOffset: CGFloat = 50
+        let imageSize: CGFloat = 120
+        
+        let detailLabel = UILabel(frame: CGRect(x:0,y:self.view.bounds.size.width/2+vOffset,width:self.view.bounds.size.width, height:50))
+        detailLabel.text = "Tap big 'scan' button \nto scan NFC NDEF Tag"
+        detailLabel.textColor = UIColor.darkGray
+        detailLabel.numberOfLines = 0;
+        detailLabel.textAlignment = .center;
+        detailLabel.font = UIFont.systemFont(ofSize: 15, weight: .light)
+        detailLabel.backgroundColor = UIColor.clear
+        bgView.addSubview(detailLabel)
+
+        let imageView = UIImageView(frame: CGRect(x:self.view.bounds.size.width/2-imageSize/2,y:self.view.bounds.size.width/2-vOffset-imageSize/3,width:imageSize, height:imageSize))
+        imageView.image = UIImage(named: "tag")
+        imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight, .flexibleBottomMargin, .flexibleRightMargin, .flexibleLeftMargin, .flexibleTopMargin]
+        imageView.contentMode = .scaleAspectFit // OR .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.backgroundColor = UIColor.clear
+        bgView.addSubview(imageView)
+        
+        return bgView
+    }
+}
+
 
