@@ -70,18 +70,22 @@ extension TagInfoVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             let tuple = self.internalTagData[indexPath.row]
             cell.textLabel?.text = tuple.title
             cell.detailTextLabel?.text = tuple.value
+            return cell
         } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellNFC", for: indexPath) as? CellNFC else {
+                print("CellNFC error")
+                return UITableViewCell()
+            }
             let tuple = self.ndefSections[indexPath.section-1].sectionData[indexPath.row]
-            cell.textLabel?.text = tuple.title
-            cell.detailTextLabel?.text = tuple.value
+            cell.configureCell(title: tuple.title, detail: tuple.value)
+            return cell
         }
         
-        return cell
     }
 }
 

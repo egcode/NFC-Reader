@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -46,13 +47,53 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellNFC" id="xKP-Mp-U4O" customClass="CellNFC" customModule="NFC_Reader" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="99.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xKP-Mp-U4O" id="I0G-s7-0dG">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="45F-L1-dDZ">
+                                                    <rect key="frame" x="15" y="12" width="125" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="125" id="NHH-kS-gaA"/>
+                                                        <constraint firstAttribute="height" constant="21" id="WsL-99-LLE"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v1J-HG-Y23">
+                                                    <rect key="frame" x="141" y="12" width="221" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="os7-ob-2JZ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="45F-L1-dDZ" firstAttribute="leading" secondItem="I0G-s7-0dG" secondAttribute="leadingMargin" id="1wK-Ce-cjF"/>
+                                                <constraint firstAttribute="trailing" secondItem="v1J-HG-Y23" secondAttribute="trailing" constant="13" id="XOH-RN-IBz"/>
+                                                <constraint firstItem="v1J-HG-Y23" firstAttribute="leading" secondItem="45F-L1-dDZ" secondAttribute="trailing" constant="1" id="fZb-ru-Ywh"/>
+                                                <constraint firstItem="45F-L1-dDZ" firstAttribute="centerY" secondItem="I0G-s7-0dG" secondAttribute="centerY" id="hNO-3h-mXK"/>
+                                                <constraint firstItem="v1J-HG-Y23" firstAttribute="centerY" secondItem="I0G-s7-0dG" secondAttribute="centerY" id="x9c-ii-L37"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="labelDetail" destination="v1J-HG-Y23" id="VLc-Im-c0o"/>
+                                            <outlet property="labelTitle" destination="45F-L1-dDZ" id="bhZ-1h-4s3"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="ww2-G9-498"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="hOh-BB-4pc"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TAR-qe-Wcy">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TAR-qe-Wcy" customClass="BarView" customModule="NFC_Reader" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="607" width="375" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3iY-B0-6th" customClass="ScanButton" customModule="NFC_Reader" customModuleProvider="target">
