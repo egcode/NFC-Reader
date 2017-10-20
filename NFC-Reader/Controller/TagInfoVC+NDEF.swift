@@ -53,7 +53,7 @@ extension TagInfoVC: NFCNDEFReaderSessionDelegate {
     
     // MARK: - Helpers
     
-    func getInternalTagData(session: NFCNDEFReaderSession) {
+ private  func getInternalTagData(session: NFCNDEFReaderSession) {
         if let tagsArray = session.value(forKey: "_foundTags") as? [AnyObject], let foundTag = tagsArray.first {
             print("Internal Tag Data: \(foundTag)")
             var tagID = ""
@@ -88,7 +88,7 @@ extension TagInfoVC: NFCNDEFReaderSessionDelegate {
         }
     }
     
-    func getTagRecordsData(payload: String, type: String, identifier: String, typeNameFormat: String) -> [(title: String, value: String)] {
+ private func getTagRecordsData(payload: String, type: String, identifier: String, typeNameFormat: String) -> [(title: String, value: String)] {
         
         var sectionData = [(title: String, value: String)]()
         
@@ -107,7 +107,7 @@ extension TagInfoVC: NFCNDEFReaderSessionDelegate {
         return sectionData
     }
 
-    func getTypeNameFormatString(format: NFCTypeNameFormat) -> String {
+ private func getTypeNameFormatString(format: NFCTypeNameFormat) -> String {
         switch format {
         case .absoluteURI:
             return "AbsoluteURI"
