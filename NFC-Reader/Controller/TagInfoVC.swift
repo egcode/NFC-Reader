@@ -60,9 +60,6 @@ class TagInfoVC: UIViewController {
         
         var sectionData = [(title: String, value: String)]()
         
-        if payload != "" {
-            sectionData.append((title: "payload", value: payload.replacingOccurrences(of: "\0", with: "")))
-        }
         if type != "" {
             var t = type
             switch t {
@@ -74,6 +71,9 @@ class TagInfoVC: UIViewController {
                 break
             }
             sectionData.append((title: "Type", value: t))
+        }
+        if payload != "" {
+            sectionData.append((title: "Payload", value: payload.replacingOccurrences(of: "\0", with: "")))
         }
         if identifier != "" {
             sectionData.append((title: "Identifier", value: identifier))
