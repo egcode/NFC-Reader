@@ -36,7 +36,10 @@ extension TagInfoVC: UITableViewDataSource {
             }
             let section = self.ndefSections[indexPath.section-1]
             let tuple = section.sectionData[indexPath.row]
-            cell.configureCell(title: tuple.title, detail: tuple.value, section: section)
+//            cell.configureCell(title: tuple.title, detail: tuple.value, section: section)
+            cell.configureCell(title: tuple.title, detail: tuple.value, section: section, action: {
+                self.performSegue(withIdentifier: "textSegue", sender: nil)
+            })
             return cell
         }
     }

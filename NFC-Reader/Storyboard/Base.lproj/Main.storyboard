@@ -133,11 +133,45 @@
                     <navigationItem key="navigationItem" title="NFC Tag" id="S7Q-Wd-zOa"/>
                     <connections>
                         <outlet property="table" destination="BXf-yh-jNx" id="xOU-T0-0V8"/>
+                        <segue destination="cVp-bB-pwe" kind="show" identifier="textSegue" id="GTV-Wp-Vvc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="476" y="132.68365817091455"/>
+        </scene>
+        <!--Text ViewerVC-->
+        <scene sceneID="pcR-cp-kzE">
+            <objects>
+                <viewController id="cVp-bB-pwe" customClass="TextViewerVC" customModule="NFC_Reader" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1AJ-lP-VqS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YNa-rJ-OiJ">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YNa-rJ-OiJ" firstAttribute="trailing" secondItem="EjX-IA-fyG" secondAttribute="trailing" id="CoC-C4-bp6"/>
+                            <constraint firstItem="YNa-rJ-OiJ" firstAttribute="leading" secondItem="EjX-IA-fyG" secondAttribute="leading" id="XYH-bH-vw2"/>
+                            <constraint firstItem="YNa-rJ-OiJ" firstAttribute="top" secondItem="EjX-IA-fyG" secondAttribute="top" id="c1j-o7-5ir"/>
+                            <constraint firstItem="YNa-rJ-OiJ" firstAttribute="bottom" secondItem="EjX-IA-fyG" secondAttribute="bottom" id="gWn-y9-vds"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="EjX-IA-fyG"/>
+                    </view>
+                    <connections>
+                        <outlet property="textView" destination="YNa-rJ-OiJ" id="GvG-IK-qTZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0c2-BD-F7L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1197.5999999999999" y="132.68365817091455"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wke-Ik-vzJ">

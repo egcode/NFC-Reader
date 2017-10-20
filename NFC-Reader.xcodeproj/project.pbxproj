@@ -18,6 +18,7 @@
 		5FAAE8B11F9A63D1004401CC /* CellNFC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAAE8B01F9A63D1004401CC /* CellNFC.swift */; };
 		5FAAE8B31F9A6FDF004401CC /* BarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAAE8B21F9A6FDF004401CC /* BarView.swift */; };
 		5FAAE8B51F9A7427004401CC /* TagInfoVC+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAAE8B41F9A7427004401CC /* TagInfoVC+TableView.swift */; };
+		5FAAE8B71F9A875B004401CC /* TextViewerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FAAE8B61F9A875B004401CC /* TextViewerVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		5FAAE8B01F9A63D1004401CC /* CellNFC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellNFC.swift; sourceTree = "<group>"; };
 		5FAAE8B21F9A6FDF004401CC /* BarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarView.swift; sourceTree = "<group>"; };
 		5FAAE8B41F9A7427004401CC /* TagInfoVC+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TagInfoVC+TableView.swift"; sourceTree = "<group>"; };
+		5FAAE8B61F9A875B004401CC /* TextViewerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewerVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				5FAAE8A11F99506B004401CC /* TagInfoVC.swift */,
 				5FAAE8B41F9A7427004401CC /* TagInfoVC+TableView.swift */,
 				5FAAE8AA1F995EA7004401CC /* TagInfoVC+NDEF.swift */,
+				5FAAE8B61F9A875B004401CC /* TextViewerVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				5FAAE8901F994F13004401CC /* AppDelegate.swift in Sources */,
 				5FAAE8A81F99529B004401CC /* ScanButton.swift in Sources */,
 				5FAAE8B51F9A7427004401CC /* TagInfoVC+TableView.swift in Sources */,
+				5FAAE8B71F9A875B004401CC /* TextViewerVC.swift in Sources */,
 				5FAAE8AB1F995EA7004401CC /* TagInfoVC+NDEF.swift in Sources */,
 				5FAAE8A21F99506B004401CC /* TagInfoVC.swift in Sources */,
 				5FAAE8AE1F995F08004401CC /* UIViewController+alert.swift in Sources */,
