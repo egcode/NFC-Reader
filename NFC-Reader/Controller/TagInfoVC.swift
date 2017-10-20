@@ -45,7 +45,7 @@ class TagInfoVC: UIViewController {
     func tagDataChanged(tagID: String, tagTechnology: String, tagType: String) {
         self.internalTagData.removeAll()
         if tagID != "" {
-            self.internalTagData.append((title: "UID", value: tagID.uppercased()))
+            self.internalTagData.append((title: "Serial Number", value: tagID.uppercased()))
         }
         if tagTechnology != "" {
             self.internalTagData.append((title: "Technology", value: tagTechnology.uppercased()))

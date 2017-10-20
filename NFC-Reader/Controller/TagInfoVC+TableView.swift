@@ -50,6 +50,7 @@ extension TagInfoVC: UITableViewDelegate {
         let view = UIView(frame: CGRect(x:0, y:0, width:tableView.frame.size.width, height:18))
         let label = UILabel(frame: CGRect(x:10, y:5, width:tableView.frame.size.width, height:18))
         label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = UIColor.lightGray
         view.addSubview(label);
         view.backgroundColor = UIColor.clear;
         if section == 0 && internalTagData.count > 0 {
