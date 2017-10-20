@@ -20,6 +20,7 @@ extension TagInfoVC: NFCNDEFReaderSessionDelegate {
         print("-->didDetectNDEFs: \(messages)")
         var resultString = ""
         
+        self.ndefSections.removeAll()
         for message in messages {
             for record in message.records {
                 print(record.payload)
@@ -38,7 +39,7 @@ extension TagInfoVC: NFCNDEFReaderSessionDelegate {
                 resultString += "\n---"
                 
                 let section = NdefSection(sectionData: self.getTagRecordsData(payload: payload, type: type, identifier: ident, typeNameFormat: typeNameForm))
-                self.recordSections.append(section)
+                self.ndefSections.append(section)
             }
             
         }

@@ -11,11 +11,11 @@ import CoreNFC
 
 class TagInfoVC: UIViewController {
     
+    var internalTagData = [(title: String, value: String)]()
     struct NdefSection {
         var sectionData = [(title: String, value: String)]()
     }
-    var internalTagData = [(title: String, value: String)]()
-    var recordSections = [NdefSection]()
+    var ndefSections = [NdefSection]()
     
     @IBOutlet weak var table: UITableView!
     private var nfcSession: NFCNDEFReaderSession!
@@ -58,14 +58,14 @@ class TagInfoVC: UIViewController {
 
 extension TagInfoVC: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1 + self.recordSections.count
+        return 1 + self.ndefSections.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return self.internalTagData.count
         } else {
-            return self.recordSections[section-1].sectionData.count
+            return self.ndefSections[section-1].sectionData.count
         }
     }
     
@@ -76,7 +76,7 @@ extension TagInfoVC: UITableViewDataSource {
             cell.textLabel?.text = tuple.title
             cell.detailTextLabel?.text = tuple.value
         } else {
-            let tuple = self.recordSections[indexPath.section-1].sectionData[indexPath.row]
+            let tuple = self.ndefSections[indexPath.section-1].sectionData[indexPath.row]
             cell.textLabel?.text = tuple.title
             cell.detailTextLabel?.text = tuple.value
         }
@@ -98,10 +98,12 @@ extension TagInfoVC: UITableViewDelegate {
         view.backgroundColor = UIColor.clear;
         if section == 0 && internalTagData.count > 0 {
             label.text = "Tag Info";
+            return view
         } else if section >= 0 {
             label.text = "NDEF Record \(section)";
+            return view
         }
-        return view
+        return nil
     }
     
 }

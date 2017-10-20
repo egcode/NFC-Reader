@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="BXf-yh-jNx">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="533"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="IcA-Lb-DxZ" detailTextLabel="Xrt-oT-OR2" style="IBUITableViewCellStyleValue1" id="F4s-xD-ygn">
@@ -83,8 +83,8 @@
                             <constraint firstItem="TAR-qe-Wcy" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="56B-hc-vV8"/>
                             <constraint firstItem="BXf-yh-jNx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="7iG-Ty-iGk"/>
                             <constraint firstItem="TAR-qe-Wcy" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Dqr-cy-YrM"/>
+                            <constraint firstItem="TAR-qe-Wcy" firstAttribute="top" secondItem="BXf-yh-jNx" secondAttribute="bottom" id="VkG-Vk-avt"/>
                             <constraint firstItem="BXf-yh-jNx" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="XLY-LU-hGV"/>
-                            <constraint firstItem="BXf-yh-jNx" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="rFT-Yx-Lea"/>
                             <constraint firstItem="TAR-qe-Wcy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="tjn-F8-qsF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
