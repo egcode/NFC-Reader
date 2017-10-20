@@ -25,7 +25,7 @@ extension TagInfoVC: NFCNDEFReaderSessionDelegate {
             for record in message.records {
                 print(record.payload)
                 
-                let payload = String.init(data: record.payload, encoding: .utf8)?.replacingOccurrences(of: "\0", with: "") ?? ""
+                let payload = String.init(data: record.payload, encoding: .utf8) ?? ""
                 let type = String.init(data: record.type, encoding: .utf8) ?? ""
                 let ident = String.init(data: record.identifier, encoding: .utf8) ?? ""
                 let typeNameForm = "\(self.getTypeNameFormatString(format: record.typeNameFormat))"
@@ -53,7 +53,7 @@ extension TagInfoVC: NFCNDEFReaderSessionDelegate {
     
     // MARK: - Helpers
     
- private  func getInternalTagData(session: NFCNDEFReaderSession) {
+ private func getInternalTagData(session: NFCNDEFReaderSession) {
         if let tagsArray = session.value(forKey: "_foundTags") as? [AnyObject], let foundTag = tagsArray.first {
             print("Internal Tag Data: \(foundTag)")
             var tagID = ""
@@ -88,41 +88,4 @@ extension TagInfoVC: NFCNDEFReaderSessionDelegate {
         }
     }
     
- private func getTagRecordsData(payload: String, type: String, identifier: String, typeNameFormat: String) -> [(title: String, value: String)] {
-        
-        var sectionData = [(title: String, value: String)]()
-        
-        if payload != "" {
-            sectionData.append((title: "payload", value: payload))
-        }
-        if type != "" {
-            sectionData.append((title: "Type", value: type))
-        }
-        if identifier != "" {
-            sectionData.append((title: "Identifier", value: identifier))
-        }
-        if typeNameFormat != "" {
-            sectionData.append((title: "TypeNameFormat", value: typeNameFormat))
-        }
-        return sectionData
-    }
-
- private func getTypeNameFormatString(format: NFCTypeNameFormat) -> String {
-        switch format {
-        case .absoluteURI:
-            return "AbsoluteURI"
-        case .empty:
-            return "Empty"
-        case .nfcWellKnown:
-            return "NfcWellKnown"
-        case .media:
-            return "MIME(RFC 2046)"
-        case .nfcExternal:
-            return "NfcExternal"
-        case .unknown:
-            return "Unknown"
-        case .unchanged:
-            return "Unchanged"
-        }
-    }
 }
