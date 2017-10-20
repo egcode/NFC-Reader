@@ -12,7 +12,9 @@ class CellNFC: UITableViewCell {
 
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var labelDetail: UILabel!
-    var action = {}
+    
+    var delegate: CellTapDelegate?
+    private var detailText: String = ""
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,19 +33,17 @@ class CellNFC: UITableViewCell {
         
         if section.payloadActionType == .text && title == RecordNDEF.payload.rawValue {
             self.accessoryType = .disclosureIndicator
-            if let a = action {
-                self.action = a
-                let tgr = UITapGestureRecognizer(target: self, action: #selector(self.tapText(_:)))
-                self.labelDetail.isUserInteractionEnabled = true
-                self.labelDetail.addGestureRecognizer(tgr)
-            }
+            let tgr = UITapGestureRecognizer(target: self, action: #selector(self.tapText(_:)))
+            self.labelDetail.isUserInteractionEnabled = true
+            self.labelDetail.addGestureRecognizer(tgr)
+            self.detailText = detail
         } else if section.payloadActionType == .url && title == RecordNDEF.payload.rawValue {
             self.labelDetail.textColor = UIColor.blue
         }
     }
     
     @objc func tapText(_ sender: UITapGestureRecognizer) {
-        self.action()
+        self.delegate?.didTapOnTextSegue(text: self.detailText)
     }
 
 

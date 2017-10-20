@@ -17,7 +17,7 @@ class TextViewerVC: UIViewController {
         super.viewDidLoad()
         self.title = "NFC Text"
         self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.text = self.textView.text
+        self.textView.text = self.text
     }
 
 }
