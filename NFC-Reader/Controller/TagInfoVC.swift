@@ -13,22 +13,9 @@ class TagInfoVC: UIViewController {
     
     var internalTagData = [(title: String, value: String)]()
     
-    lazy var countries: [String] = {
-        var names = [String]()
-        let current = NSLocale(localeIdentifier: "en_US")
-        for code in NSLocale.isoCountryCodes {
-            let id = NSLocale.localeIdentifier(fromComponents: [NSLocale.Key.countryCode.rawValue: code])
-            let name = current.displayName(forKey: NSLocale.Key.identifier, value: id)
-            if let country = name {
-                names.append(country)
-            }
-        }
-        return names
-    }()
-
-    
     @IBOutlet weak var table: UITableView!
     private var nfcSession: NFCNDEFReaderSession!
+    var timer:Timer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,15 +23,16 @@ class TagInfoVC: UIViewController {
         self.navigationController?.navigationBar.prefersLargeTitles = true
 
     }
-
     
+    // MARK: -
     @IBAction func onScanButton(_ sender: ScanButton) {
         self.nfcSession = NFCNDEFReaderSession(delegate: self,
                                                queue: DispatchQueue(label: "ndefQueue", attributes: .concurrent), invalidateAfterFirstRead: true)
         self.nfcSession.alertMessage = "Bla bla, Put your NFC TAG over iPhone.."
         self.nfcSession.begin()
+        self.timer = Timer.scheduledTimer(timeInterval: 50.0, target: self, selector: #selector(self.timerFunc), userInfo: nil, repeats: false)
+
     }
-    
     func tagDataChanged(tagID: String, tagTechnology: String, tagType: String) {
         self.internalTagData.removeAll()
         if tagID != "" {
@@ -60,6 +48,14 @@ class TagInfoVC: UIViewController {
             self.table.reloadData()
         }
     }
+    
+    //MARK: - Timer
+    
+    func timerFunc() {
+        self.alert(title: "", msg: "Scanner could not detect any tags")
+    }
+
+    
 }
 
 

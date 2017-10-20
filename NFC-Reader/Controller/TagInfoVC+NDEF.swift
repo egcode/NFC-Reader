@@ -15,6 +15,7 @@ extension TagInfoVC: NFCNDEFReaderSessionDelegate {
     }
     
     func readerSession(_ session: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {
+        self.timer?.invalidate()
         print("-->didDetectNDEFs: \(messages)")
         self.getInternalTagData(session: session)//////////
         var resultString = ""
@@ -36,25 +37,6 @@ extension TagInfoVC: NFCNDEFReaderSessionDelegate {
     
     
     // MARK: - Helpers
-    
-    func getTypeNameFormatString(format: NFCTypeNameFormat) -> String {
-        switch format {
-        case .absoluteURI:
-            return "absoluteURI"
-        case .empty:
-            return "empty"
-        case .nfcWellKnown:
-            return "nfcWellKnown"
-        case .media:
-            return "media"
-        case .nfcExternal:
-            return "nfcExternal"
-        case .unknown:
-            return "unknown"
-        case .unchanged:
-            return "unchanged"
-        }
-    }
     
     func getInternalTagData(session: NFCNDEFReaderSession) {
         if let tagsArray = session.value(forKey: "_foundTags") as? [AnyObject], let foundTag = tagsArray.first {
@@ -91,4 +73,23 @@ extension TagInfoVC: NFCNDEFReaderSessionDelegate {
         }
     }
     
+    func getTypeNameFormatString(format: NFCTypeNameFormat) -> String {
+        switch format {
+        case .absoluteURI:
+            return "absoluteURI"
+        case .empty:
+            return "empty"
+        case .nfcWellKnown:
+            return "nfcWellKnown"
+        case .media:
+            return "media"
+        case .nfcExternal:
+            return "nfcExternal"
+        case .unknown:
+            return "unknown"
+        case .unchanged:
+            return "unchanged"
+        }
+    }
+
 }
