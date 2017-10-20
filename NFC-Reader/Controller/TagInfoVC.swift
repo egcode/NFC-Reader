@@ -99,7 +99,7 @@ extension TagInfoVC: UITableViewDelegate {
         if section == 0 && internalTagData.count > 0 {
             label.text = "Tag Info";
             return view
-        } else if section >= 0 {
+        } else if section >= 0 && ndefSections.count > 0 {
             label.text = "NDEF Record \(section)";
             return view
         }
