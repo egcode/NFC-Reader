@@ -45,7 +45,8 @@ class TagInfoVC: UIViewController {
     func tagDataChanged(tagID: String, tagTechnology: String, tagType: String) {
         self.internalTagData.removeAll()
         if tagID != "" {
-            self.internalTagData.append((title: "Serial Number", value: tagID.uppercased()))
+            let n = insert(seperator: ":", afterEveryXChars: 2, intoString: tagID)
+            self.internalTagData.append((title: "Serial Number", value: n.uppercased()))
         }
         if tagTechnology != "" {
             self.internalTagData.append((title: "Technology", value: tagTechnology.uppercased()))
@@ -102,6 +103,17 @@ class TagInfoVC: UIViewController {
         }
     }
     
+    func insert(seperator: String, afterEveryXChars: Int, intoString: String) -> String {
+        var output = ""
+        intoString.enumerated().forEach { index, c in
+            if index % afterEveryXChars == 0 && index > 0 {
+                output += seperator
+            }
+            output.append(c)
+        }
+        return output
+    }
+
     //MARK: - Timer
     
     @objc func timerFunc() {
