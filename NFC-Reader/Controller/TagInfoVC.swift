@@ -50,11 +50,19 @@ class TagInfoVC: UIViewController {
     
     // MARK: -
     @IBAction func onScanButton(_ sender: ScanButton) {
-        self.nfcSession = NFCNDEFReaderSession(delegate: self,
-                                               queue: DispatchQueue(label: "ndefQueue", attributes: .concurrent), invalidateAfterFirstRead: true)
-        self.nfcSession.alertMessage = "Put your NFC TAG over iPhone.."
-        self.nfcSession.begin()
-        self.timer = Timer.scheduledTimer(timeInterval: 50.0, target: self, selector: #selector(self.timerFunc), userInfo: nil, repeats: false)
+        
+        switch UIDevice().type {
+        case .iPhone5, .iPhone5S, .iPhone4, .iPhone4S, .iPhone6, .iPhone6S, .iPhone6Splus, .simulator:
+            self.alert(title: "Warning", msg: "Device does not support NFC reading feature")
+            break
+        default:
+            
+            self.nfcSession = NFCNDEFReaderSession(delegate: self,
+                                                   queue: DispatchQueue(label: "ndefQueue", attributes: .concurrent), invalidateAfterFirstRead: true)
+            self.nfcSession.alertMessage = "Put your NFC TAG over iPhone.."
+            self.nfcSession.begin()
+            self.timer = Timer.scheduledTimer(timeInterval: 50.0, target: self, selector: #selector(self.timerFunc), userInfo: nil, repeats: false)
+        }
     }
     
     // MARK: - Data Parsing
@@ -138,4 +146,3 @@ class TagInfoVC: UIViewController {
         self.alert(title: "", msg: "Scanner could not detect any tags")
     }
 }
-
