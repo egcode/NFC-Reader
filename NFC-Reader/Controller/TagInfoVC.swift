@@ -9,17 +9,34 @@
 import UIKit
 import CoreNFC
 
+enum RecordNDEF : String {
+    case type = "Type"
+    case payload = "Payload"
+    case id = "ID"
+    case typeName = "Type Name"
+}
+
 enum TypeNDEF : String {
     case uri = "URI"
     case text = "Text"
 }
 
+enum PayloadActionType {
+    case none
+    case url
+    case geo
+    case text
+}
+
+struct NdefSection {
+    var sectionData: [(title: String, value: String)]
+    var payloadActionType: PayloadActionType
+}
+
 class TagInfoVC: UIViewController {
     
+    
     var internalTagData = [(title: String, value: String)]()
-    struct NdefSection {
-        var sectionData = [(title: String, value: String)]()
-    }
     var ndefSections = [NdefSection]()
     
     @IBOutlet weak var table: UITableView!
@@ -70,16 +87,16 @@ class TagInfoVC: UIViewController {
             default:
                 break
             }
-            sectionData.append((title: "Type", value: t))
+            sectionData.append((title: RecordNDEF.type.rawValue, value: t))
         }
         if payload != "" {
-            sectionData.append((title: "Payload", value: payload.replacingOccurrences(of: "\0", with: "")))
+            sectionData.append((title: RecordNDEF.payload.rawValue, value: payload.replacingOccurrences(of: "\0", with: "")))
         }
         if identifier != "" {
-            sectionData.append((title: "Identifier", value: identifier))
+            sectionData.append((title: RecordNDEF.id.rawValue, value: identifier))
         }
         if typeNameFormat != "" {
-            sectionData.append((title: "Type Name", value: typeNameFormat))
+            sectionData.append((title: RecordNDEF.typeName.rawValue, value: typeNameFormat))
         }
         return sectionData
     }

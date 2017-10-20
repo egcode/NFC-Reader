@@ -41,7 +41,17 @@ extension TagInfoVC: NFCNDEFReaderSessionDelegate {
                 print(resultString)
                 resultString += "\n---"
                 
-                let section = NdefSection(sectionData: self.getTagRecordsData(payload: payload, type: type, identifier: ident, typeNameFormat: typeNameForm))
+                var payloadAction: PayloadActionType = .none
+                switch type {
+                case "T":
+                    payloadAction = .text
+                case "U":
+                    payloadAction = .url
+                default:
+                    break
+                }
+                
+                let section = NdefSection(sectionData: self.getTagRecordsData(payload: payload, type: type, identifier: ident, typeNameFormat: typeNameForm), payloadActionType: payloadAction)
                 self.ndefSections.append(section)
             }
             

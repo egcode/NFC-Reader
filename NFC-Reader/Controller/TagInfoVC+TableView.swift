@@ -34,8 +34,9 @@ extension TagInfoVC: UITableViewDataSource {
                 print("CellNFC error")
                 return UITableViewCell()
             }
-            let tuple = self.ndefSections[indexPath.section-1].sectionData[indexPath.row]
-            cell.configureCell(title: tuple.title, detail: tuple.value)
+            let section = self.ndefSections[indexPath.section-1]
+            let tuple = section.sectionData[indexPath.row]
+            cell.configureCell(title: tuple.title, detail: tuple.value, section: section)
             return cell
         }
     }
