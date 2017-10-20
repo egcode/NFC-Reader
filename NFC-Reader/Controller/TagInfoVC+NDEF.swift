@@ -28,7 +28,10 @@ extension TagInfoVC: NFCNDEFReaderSessionDelegate {
                 let payload = String.init(data: record.payload, encoding: .utf8) ?? ""
                 let type = String.init(data: record.type, encoding: .utf8) ?? ""
                 let ident = String.init(data: record.identifier, encoding: .utf8) ?? ""
-                let typeNameForm = "\(self.getTypeNameFormatString(format: record.typeNameFormat))"
+                var typeNameForm = ""
+                if record.typeNameFormat != .nfcWellKnown {
+                    typeNameForm = "\(self.getTypeNameFormatString(format: record.typeNameFormat))"
+                }
                 
                 resultString += "---\n"
                 resultString += "Payload: \(payload)\n"

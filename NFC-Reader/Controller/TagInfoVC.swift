@@ -9,6 +9,11 @@
 import UIKit
 import CoreNFC
 
+enum TypeNDEF : String {
+    case uri = "URI"
+    case text = "Text"
+}
+
 class TagInfoVC: UIViewController {
     
     var internalTagData = [(title: String, value: String)]()
@@ -30,7 +35,7 @@ class TagInfoVC: UIViewController {
     @IBAction func onScanButton(_ sender: ScanButton) {
         self.nfcSession = NFCNDEFReaderSession(delegate: self,
                                                queue: DispatchQueue(label: "ndefQueue", attributes: .concurrent), invalidateAfterFirstRead: true)
-        self.nfcSession.alertMessage = "Bla bla, Put your NFC TAG over iPhone.."
+        self.nfcSession.alertMessage = "Put your NFC TAG over iPhone.."
         self.nfcSession.begin()
         self.timer = Timer.scheduledTimer(timeInterval: 50.0, target: self, selector: #selector(self.timerFunc), userInfo: nil, repeats: false)
     }
@@ -58,13 +63,22 @@ class TagInfoVC: UIViewController {
             sectionData.append((title: "payload", value: payload.replacingOccurrences(of: "\0", with: "")))
         }
         if type != "" {
-            sectionData.append((title: "Type", value: type))
+            var t = type
+            switch t {
+            case "U":
+                t = TypeNDEF.uri.rawValue
+            case "T":
+                t = TypeNDEF.text.rawValue
+            default:
+                break
+            }
+            sectionData.append((title: "Type", value: t))
         }
         if identifier != "" {
             sectionData.append((title: "Identifier", value: identifier))
         }
         if typeNameFormat != "" {
-            sectionData.append((title: "TypeNameFormat", value: typeNameFormat))
+            sectionData.append((title: "Type Name", value: typeNameFormat))
         }
         return sectionData
     }
@@ -80,7 +94,7 @@ class TagInfoVC: UIViewController {
         case .media:
             return "MIME(RFC 2046)"
         case .nfcExternal:
-            return "NfcExternal"
+            return "Nfc External"
         case .unknown:
             return "Unknown"
         case .unchanged:
