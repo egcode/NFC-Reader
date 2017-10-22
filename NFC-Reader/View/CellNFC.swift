@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class CellNFC: UITableViewCell {
 
@@ -54,13 +55,41 @@ class CellNFC: UITableViewCell {
 
     @objc func tapUrl(_ sender: UITapGestureRecognizer) {
 //        self.delegate?.didTapOnTextSegue(text: self.detailText)
-        print("Detail Text: \(self.detailText.debugDescription)")
-        if let url = URL(string: self.detailText) {
+        if self.detailText.contains("geo:") {
+            let allGeoString = self.detailText.replacingOccurrences(of: "geo:", with: "")
+            let coords = allGeoString.components(separatedBy: ",")
+            if let latString = coords.first, let lat = Double(latString), let longString = coords.last, let long = Double(longString) {
+                self.openMapForPlace(lat: lat, long: long)
+            } else {
+                print("Error extracting coordinates")
+            }
+        } else if self.detailText.contains("http"), let url = URL(string: self.detailText) {
             UIApplication.shared.open(url, options: [:], completionHandler: { (completed) in
             })
-        } else {
-            print("no URL")
         }
     }
+    
+    // MARK: - opent coords
+    
+    
+    func openMapForPlace(lat: Double, long: Double) {
+//        let latitude: CLLocationDegrees = 37.2
+//        let longitude: CLLocationDegrees = 22.9
+        let latitude: CLLocationDegrees = lat
+        let longitude: CLLocationDegrees = long
+        
+        let regionDistance:CLLocationDistance = 10000
+        let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+        let regionSpan = MKCoordinateRegionMakeWithDistance(coordinates, regionDistance, regionDistance)
+        let options = [
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
+            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
+        ]
+        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = "Place Name"
+        mapItem.openInMaps(launchOptions: options)
+    }
+
 
 }

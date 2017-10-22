@@ -138,8 +138,6 @@ class TagInfoVC: UIViewController {
          */
         let nullData = "\0"
         let space = "\u{02}"
-        
-        print("\n---++ final: \(payload)\n")
 
         var result = payload
         if payload.contains(nullData) {
