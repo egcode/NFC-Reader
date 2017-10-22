@@ -70,7 +70,7 @@ class TagInfoVC: UIViewController {
     func tagDataChanged(tagID: String, tagTechnology: String, tagType: String) {
         self.internalTagData.removeAll()
         if tagID != "" {
-            let n = insert(seperator: ":", afterEveryXChars: 2, intoString: tagID)
+            let n = insertToId(seperator: ":", afterEveryXChars: 2, intoString: tagID)
             self.internalTagData.append((title: "Serial Number", value: n.uppercased()))
         }
         if tagTechnology != "" {
@@ -104,7 +104,8 @@ class TagInfoVC: UIViewController {
             sectionData.append((title: RecordNDEF.typeName.rawValue, value: typeNameFormat))
         }
         if payload != "" {
-            sectionData.append((title: RecordNDEF.payload.rawValue, value: payload.replacingOccurrences(of: "\0", with: "")))
+            let finalPayload = self.handlePayloadData(payload: payload, type: type)
+            sectionData.append((title: RecordNDEF.payload.rawValue, value: finalPayload))
         }
         return sectionData
     }
@@ -128,7 +129,34 @@ class TagInfoVC: UIViewController {
         }
     }
     
-    func insert(seperator: String, afterEveryXChars: Int, intoString: String) -> String {
+    // MARK: - finalize data
+    
+    func handlePayloadData(payload: String, type: String) -> String {
+        /*
+         let geo = "\"\\0geo:47.321472,5.041382\""
+         let url = "\"\\u{02}google.com\""
+         */
+        let nullData = "\0"
+        let space = "\u{02}"
+        
+        print("\n---++ final: \(payload)\n")
+
+        var result = payload
+        if payload.contains(nullData) {
+            result = payload.replacingOccurrences(of: nullData, with: "")
+        }
+        if payload.contains(space) {
+            if type == "U" {
+                result = payload.replacingOccurrences(of: space, with: "http://")
+            } else {
+                result = payload.replacingOccurrences(of: space, with: "")
+            }
+        }
+        return result
+    }
+
+    
+    func insertToId(seperator: String, afterEveryXChars: Int, intoString: String) -> String {
         var output = ""
         intoString.enumerated().forEach { index, c in
             if index % afterEveryXChars == 0 && index > 0 {
