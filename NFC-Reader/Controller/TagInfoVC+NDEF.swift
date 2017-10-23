@@ -33,13 +33,13 @@ extension TagInfoVC: NFCNDEFReaderSessionDelegate {
                     typeNameForm = "\(self.getTypeNameFormatString(format: record.typeNameFormat))"
                 }
                 
-                resultString += "---\n"
-                resultString += "Payload: \(payload)\n"
-                resultString += "Type: \(String(describing: String.init(data: record.type, encoding: .utf8)!))\n" //U - url,sms,phone,location, T - text, android.com:pkg - android app,
-                resultString += "Identifier: \(record.identifier)\n"
-                resultString += "TypeNameFormat: \(self.getTypeNameFormatString(format: record.typeNameFormat))"
-                print(resultString)
-                resultString += "\n---"
+//                resultString += "---\n"
+//                resultString += "Payload: \(payload)\n"
+//                resultString += "Type: \(String(describing: String.init(data: record.type, encoding: .utf8)!))\n" //U - url,sms,phone,location, T - text, android.com:pkg - android app,
+//                resultString += "Identifier: \(record.identifier)\n"
+//                resultString += "TypeNameFormat: \(self.getTypeNameFormatString(format: record.typeNameFormat))"
+//                print(resultString)
+//                resultString += "\n---"
                 
                 var payloadAction: PayloadActionType = .none
                 switch type {
@@ -57,10 +57,10 @@ extension TagInfoVC: NFCNDEFReaderSessionDelegate {
             
         }
 
-        DispatchQueue.main.async {
-            self.table.reloadData()
-            self.alert(title: "Tag read success", msg: resultString)
-        }
+//        DispatchQueue.main.async {
+//            self.table.reloadData()
+//            self.alert(title: "Tag read success", msg: resultString)
+//        }
     }
     
     
