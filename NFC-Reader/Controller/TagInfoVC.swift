@@ -81,16 +81,16 @@ class TagInfoVC: UIViewController {
         }
     }
     
-    func getTagRecordsData(payload: String, type: String, identifier: String, typeNameFormat: String) -> [(title: String, value: String)] {
-        
+    func getTagRecordsData(payload: String, type: String, identifier: String, typeNameFormat: String, payloadAction: PayloadActionType) -> [(title: String, value: String)] {
+                
         var sectionData = [(title: String, value: String)]()
         
         if type != "" {
             var t = type
-            switch t {
-            case "U":
+            switch payloadAction {
+            case .url:
                 t = TypeNDEF.uri.rawValue
-            case "T":
+            case .text:
                 t = TypeNDEF.text.rawValue
             default:
                 break
@@ -104,7 +104,7 @@ class TagInfoVC: UIViewController {
             sectionData.append((title: RecordNDEF.typeName.rawValue, value: typeNameFormat))
         }
         if payload != "" {
-            let finalPayload = self.handlePayloadData(payload: payload, type: type)
+            let finalPayload = self.handlePayloadData(payload: payload, type: payloadAction)
             sectionData.append((title: RecordNDEF.payload.rawValue, value: finalPayload))
         }
         return sectionData
@@ -131,7 +131,7 @@ class TagInfoVC: UIViewController {
     
     // MARK: - finalize data
     
-    func handlePayloadData(payload: String, type: String) -> String {
+    func handlePayloadData(payload: String, type: PayloadActionType) -> String {
         /*
          let geo = "\"\\0geo:47.321472,5.041382\""
          let url = "\"\\u{02}google.com\""
@@ -143,23 +143,34 @@ class TagInfoVC: UIViewController {
         if payload.contains(nullData) {
             result = payload.replacingOccurrences(of: nullData, with: "")
         }
-            if type == "U" {
-                if payload.contains(geo) {
-                    print("We've got location URI")
-                } else {
-                    if let i = payload.unicodeScalars.index(where: { $0.value <= 16 }) {
-                        let asciiPrefix = String(payload.unicodeScalars[...i])  // "\u{02}"
-                        var protocolPrefix = ""
-                        if asciiPrefix == "\u{04}" {
-                            protocolPrefix = "https://"
-                        } else if asciiPrefix == "\u{03}" {
-                            protocolPrefix = "http://"
-                        }
-                        result = String(payload.unicodeScalars.filter({String($0) != asciiPrefix})) // Remove scalars lower than 16
-                        result = protocolPrefix + result
-                    }
+        
+        guard let i = payload.unicodeScalars.index(where: { $0.value <= 16 }) else {
+            print("No Scalars")
+            return result
+        }
+        let asciiPrefix = String(payload.unicodeScalars[...i])  // "\u{02}"
+
+        if type == .url {
+            if payload.contains(geo) {
+                print("We've got location URI")
+            } else {
+                var protocolPrefix = ""
+                if asciiPrefix == "\u{04}" {
+                    protocolPrefix = "https://"
+                } else if asciiPrefix == "\u{03}" {
+                    protocolPrefix = "http://"
                 }
+                result = String(payload.unicodeScalars.filter({String($0) != asciiPrefix})) // Remove scalars lower than 16
+                result = protocolPrefix + result
             }
+        } else if type == .text {
+            if asciiPrefix == "\u{02}" {
+                result = "https://"
+            }
+            result = String(payload.unicodeScalars.filter({ String($0) != asciiPrefix   })) // Remove scalars lower than 16
+            let languageCode = String(result.prefix(2)) // en
+            result = String(result.dropFirst(2))        //result wigthou en
+        }
         return result
     }
 

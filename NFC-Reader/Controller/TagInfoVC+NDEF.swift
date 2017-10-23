@@ -18,7 +18,7 @@ extension TagInfoVC: NFCNDEFReaderSessionDelegate {
         self.timer?.invalidate()
         self.getInternalTagData(session: session)//////////
         print("-->didDetectNDEFs: \(messages)")
-        var resultString = ""
+//        var resultString = ""
         
         self.ndefSections.removeAll()
         for message in messages {
@@ -51,7 +51,7 @@ extension TagInfoVC: NFCNDEFReaderSessionDelegate {
                     payloadAction = .text
                 }
                 
-                let section = NdefSection(sectionData: self.getTagRecordsData(payload: payload, type: type, identifier: ident, typeNameFormat: typeNameForm), payloadActionType: payloadAction)
+                let section = NdefSection(sectionData: self.getTagRecordsData(payload: payload, type: type, identifier: ident, typeNameFormat: typeNameForm, payloadAction: payloadAction), payloadActionType: payloadAction)
                 self.ndefSections.append(section)
             }
             
