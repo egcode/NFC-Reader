@@ -57,10 +57,10 @@ extension TagInfoVC: NFCNDEFReaderSessionDelegate {
             
         }
 
-//        DispatchQueue.main.async {
-//            self.table.reloadData()
+        DispatchQueue.main.async {
+            self.table.reloadData()
 //            self.alert(title: "Tag read success", msg: resultString)
-//        }
+        }
     }
     
     
