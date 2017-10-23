@@ -165,11 +165,10 @@ class TagInfoVC: UIViewController {
             }
         } else if type == .text {
             if asciiPrefix == "\u{02}" {
-                result = "https://"
+                result = String(payload.unicodeScalars.filter({ String($0) != asciiPrefix   })) // Remove scalars lower than 16
+                let languageCode = String(result.prefix(2)) // en
+                result = String(result.dropFirst(2))        //result wigthou en
             }
-            result = String(payload.unicodeScalars.filter({ String($0) != asciiPrefix   })) // Remove scalars lower than 16
-            let languageCode = String(result.prefix(2)) // en
-            result = String(result.dropFirst(2))        //result wigthou en
         }
         return result
     }
