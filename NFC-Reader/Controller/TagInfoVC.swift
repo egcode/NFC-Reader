@@ -137,23 +137,27 @@ class TagInfoVC: UIViewController {
          let url = "\"\\u{02}google.com\""
          */
         let nullData = "\0"
-        let space = "\u{02}"
-
+        let geo = "geo:"
+        
         var result = payload
         if payload.contains(nullData) {
             result = payload.replacingOccurrences(of: nullData, with: "")
         }
-        if payload.contains(space) {
             if type == "U" {
-                result = payload.replacingOccurrences(of: space, with: "http://")
-            } else {
-                result = payload.replacingOccurrences(of: space, with: "")
+                if payload.contains(geo) {
+                    print("We've got location URI")
+                } else {
+//                  let scalar = "\u{02}"
+                    if let i = payload.unicodeScalars.index(where: { $0.value <= 16 }) {
+                        let asciiPrefix = String(payload.unicodeScalars[...i])
+                        result = String(payload.unicodeScalars.filter({String($0) != asciiPrefix})) // Remove scalars lower than 16
+                        result = "http://" + result
+                    }
+                }
             }
-        }
         return result
     }
 
-    
     func insertToId(seperator: String, afterEveryXChars: Int, intoString: String) -> String {
         var output = ""
         intoString.enumerated().forEach { index, c in
@@ -172,3 +176,4 @@ class TagInfoVC: UIViewController {
         self.alert(title: "", msg: "Scanner could not detect any tags")
     }
 }
+
