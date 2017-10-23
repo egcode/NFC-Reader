@@ -51,7 +51,8 @@ extension TagInfoVC: NFCNDEFReaderSessionDelegate {
                     payloadAction = .text
                 }
                 
-                let section = NdefSection(sectionData: self.getTagRecordsData(payload: payload, type: type, identifier: ident, typeNameFormat: typeNameForm, payloadAction: payloadAction), payloadActionType: payloadAction)
+                let sectionData = self.getTagRecordsData(payload: payload, type: type, identifier: ident, typeNameFormat: typeNameForm, payloadAction: payloadAction)
+                let section = NdefSection(sectionData: sectionData, payloadActionType: payloadAction)
                 self.ndefSections.append(section)
             }
             

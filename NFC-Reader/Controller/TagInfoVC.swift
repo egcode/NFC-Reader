@@ -14,6 +14,8 @@ enum RecordNDEF : String {
     case payload = "Payload"
     case id = "ID"
     case typeName = "Type Name"
+    case langCode = "Language Code"
+
 }
 
 enum TypeNDEF : String {
@@ -104,6 +106,12 @@ class TagInfoVC: UIViewController {
             sectionData.append((title: RecordNDEF.typeName.rawValue, value: typeNameFormat))
         }
         if payload != "" {
+            if payloadAction == .text {
+                let lc = self.handlePayloadData(payload: payload, type: payloadAction, langCode: true)
+                if lc != "" {
+                    sectionData.append((title: RecordNDEF.langCode.rawValue, value: lc))
+                }
+            }
             let finalPayload = self.handlePayloadData(payload: payload, type: payloadAction)
             sectionData.append((title: RecordNDEF.payload.rawValue, value: finalPayload))
         }
@@ -131,7 +139,7 @@ class TagInfoVC: UIViewController {
     
     // MARK: - finalize data
     
-    func handlePayloadData(payload: String, type: PayloadActionType) -> String {
+    func handlePayloadData(payload: String, type: PayloadActionType, langCode: Bool = false) -> String {
         /*
          let geo = "\"\\0geo:47.321472,5.041382\""
          let url = "\"\\u{02}google.com\""
@@ -146,7 +154,11 @@ class TagInfoVC: UIViewController {
         
         guard let i = payload.unicodeScalars.index(where: { $0.value <= 16 }) else {
             print("No Scalars")
-            return result
+            if langCode {
+                return ""
+            } else {
+                return result
+            }
         }
         let asciiPrefix = String(payload.unicodeScalars[...i])  // "\u{02}"
 
@@ -167,10 +179,15 @@ class TagInfoVC: UIViewController {
             if asciiPrefix == "\u{02}" {
                 result = String(payload.unicodeScalars.filter({ String($0) != asciiPrefix   })) // Remove scalars lower than 16
                 let languageCode = String(result.prefix(2)) // en
+                if langCode {   return languageCode     }
                 result = String(result.dropFirst(2))        //result wigthou en
             }
         }
-        return result
+        if langCode {
+            return ""
+        } else {
+            return result
+        }
     }
 
     func insertToId(seperator: String, afterEveryXChars: Int, intoString: String) -> String {
