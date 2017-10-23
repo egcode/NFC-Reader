@@ -147,11 +147,16 @@ class TagInfoVC: UIViewController {
                 if payload.contains(geo) {
                     print("We've got location URI")
                 } else {
-//                  let scalar = "\u{02}"
                     if let i = payload.unicodeScalars.index(where: { $0.value <= 16 }) {
-                        let asciiPrefix = String(payload.unicodeScalars[...i])
+                        let asciiPrefix = String(payload.unicodeScalars[...i])  // "\u{02}"
+                        var protocolPrefix = ""
+                        if asciiPrefix == "\u{04}" {
+                            protocolPrefix = "https://"
+                        } else if asciiPrefix == "\u{03}" {
+                            protocolPrefix = "http://"
+                        }
                         result = String(payload.unicodeScalars.filter({String($0) != asciiPrefix})) // Remove scalars lower than 16
-                        result = "http://" + result
+                        result = protocolPrefix + result
                     }
                 }
             }
