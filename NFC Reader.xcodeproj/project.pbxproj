@@ -24,7 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5FAAE88C1F994F13004401CC /* NFC-Reader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NFC-Reader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FAAE88C1F994F13004401CC /* NFC Reader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NFC Reader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FAAE88F1F994F13004401CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5FAAE8941F994F13004401CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5FAAE8961F994F13004401CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -65,7 +65,7 @@
 		5FAAE88D1F994F13004401CC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5FAAE88C1F994F13004401CC /* NFC-Reader.app */,
+				5FAAE88C1F994F13004401CC /* NFC Reader.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -144,9 +144,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5FAAE88B1F994F13004401CC /* NFC-Reader */ = {
+		5FAAE88B1F994F13004401CC /* NFC Reader */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5FAAE89E1F994F13004401CC /* Build configuration list for PBXNativeTarget "NFC-Reader" */;
+			buildConfigurationList = 5FAAE89E1F994F13004401CC /* Build configuration list for PBXNativeTarget "NFC Reader" */;
 			buildPhases = (
 				5FAAE8881F994F13004401CC /* Sources */,
 				5FAAE8891F994F13004401CC /* Frameworks */,
@@ -156,9 +156,9 @@
 			);
 			dependencies = (
 			);
-			name = "NFC-Reader";
+			name = "NFC Reader";
 			productName = "NFC-Reader";
-			productReference = 5FAAE88C1F994F13004401CC /* NFC-Reader.app */;
+			productReference = 5FAAE88C1F994F13004401CC /* NFC Reader.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -182,7 +182,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5FAAE8871F994F13004401CC /* Build configuration list for PBXProject "NFC-Reader" */;
+			buildConfigurationList = 5FAAE8871F994F13004401CC /* Build configuration list for PBXProject "NFC Reader" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -195,7 +195,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5FAAE88B1F994F13004401CC /* NFC-Reader */,
+				5FAAE88B1F994F13004401CC /* NFC Reader */,
 			);
 		};
 /* End PBXProject section */
@@ -402,7 +402,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5FAAE8871F994F13004401CC /* Build configuration list for PBXProject "NFC-Reader" */ = {
+		5FAAE8871F994F13004401CC /* Build configuration list for PBXProject "NFC Reader" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5FAAE89C1F994F13004401CC /* Debug */,
@@ -411,7 +411,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5FAAE89E1F994F13004401CC /* Build configuration list for PBXNativeTarget "NFC-Reader" */ = {
+		5FAAE89E1F994F13004401CC /* Build configuration list for PBXNativeTarget "NFC Reader" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5FAAE89F1F994F13004401CC /* Debug */,
