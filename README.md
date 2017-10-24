@@ -11,6 +11,7 @@ Simple NFC Reader, allows you to read nfc tags with NDEF format
 - Able to extract tag serial number
 - Open url records in default device browser
 - Open geo location in 'Maps' app
+- User able to review and copy tag record text.
 
 
 ## **Example usage**
